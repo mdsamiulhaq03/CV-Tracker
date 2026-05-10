@@ -1,9 +1,14 @@
+// Top-level require so pdf-parse is loaded once at module startup,
+// not inside an async function where Turbopack can mishandle it.
+// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any
+const pdfParseLib: any = require("pdf-parse");
+
 export async function extractTextFromPDF(buffer: Buffer): Promise<string> {
-  // pdf-parse v1 — simple Node.js-compatible function, no browser APIs needed
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const pdfParse = require("pdf-parse");
-  const data = await pdfParse(buffer);
-  return (data.text ?? "").trim();
+  if (typeof pdfParseLib !== "function") {
+    throw new Error("pdf-parse failed to load — run: npm install pdf-parse@1.1.1");
+  }
+  const data = await pdfParseLib(buffer);
+  return (data?.text ?? "").trim();
 }
 
 export async function extractTextFromDOCX(buffer: Buffer): Promise<string> {
@@ -33,5 +38,5 @@ export async function extractTextFromFile(
   if (mimeType === "text/plain" || ext === "txt")
     return buffer.toString("utf-8").trim();
 
-  throw new Error(`Unsupported file type: ${mimeType || ext}`);
+  throw new Error(`Unsupported file type. Please use PDF, DOCX, or TXT.`);
 }
