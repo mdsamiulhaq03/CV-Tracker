@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --yes)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --yes --name=\"cv-tracker\")",
+      "Read(//e/Projects/**)",
+      "Bash(npx create-next-app@latest cv-tracker-app --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --yes)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(node -e \"const m = require\\('E:/Projects/CV Tracker/node_modules/pdf-parse/dist/pdf-parse/esm/index.js'\\); console.log\\(typeof m, Object.keys\\(m\\)\\)\")",
+      "Bash(rm -rf \"E:\\\\Projects\\\\CV Tracker\\\\lib\\\\models\" && rm -f \"E:\\\\Projects\\\\CV Tracker\\\\lib\\\\db.ts\" && rm -f \"E:\\\\Projects\\\\CV Tracker\\\\lib\\\\visitor.ts\" && rm -rf \"E:\\\\Projects\\\\CV Tracker\\\\app\\\\api\\\\history\" && rm -rf \"E:\\\\Projects\\\\CV Tracker\\\\app\\\\dashboard\\\\history\" && rm -rf \"E:\\\\Projects\\\\CV Tracker\\\\app\\\\report\\\\[id]\" && echo \"Done\")"
+    ]
+  }
+}
